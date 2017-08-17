@@ -1,0 +1,48 @@
+---
+# Path to run scripts directory
+path: vagrant
+
+# Configured hosts
+hosts:
+    - name: centos-01
+      # VirtualBox identifier
+      identifier: centos-01.vagrant.dev
+      # box to use
+      box: centos/7
+      # automatic start on 'vagrant up'
+      autostart: true
+      # resources
+      provider:
+          - { directive: memory, value: "2048" }
+          - { directive: cpus, value: "2" }
+      # host ip
+      ip: 192.168.10.10
+      # shared folders
+      folders:
+        - { map: ., to: /vagrant }
+      # custom bash provisioning files
+      provision:
+        - ./vagrant/scripts/rhel/update.sh
+        - ./vagrant/scripts/demo.sh
+#     - name: ubuntu-box-02
+#       # VirtualBox identifier
+#       identifier: ubuntu-box-02.vagrant.dev
+#       # box to use
+#       box: hashicorp/precise64
+#       # automatic start on 'vagrant up'
+#       autostart: true
+#       # resources
+#       provider:
+#           - { directive: memory, value: "2048" }
+#           - { directive: cpus, value: "2" }
+#       # host ip
+#       ip: 192.168.10.10
+#       # custon VirtualBox configuration
+#       keys:
+#         - ~/.ssh/id_rsa
+#       # shared folders
+#       folders:
+#         - { map: ../, to: /data}
+#       # custom bash provisioning files
+#       provision:
+#         - ./vagrant/scripts/demo.sh
