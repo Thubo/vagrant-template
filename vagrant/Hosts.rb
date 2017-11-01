@@ -102,7 +102,7 @@ class Hosts
         # Register shared folders
         if host.has_key?('folders')
           host['folders'].each do |folder|
-            server.vm.synced_folder folder['map'], folder ['to']
+            server.vm.synced_folder folder['map'], folder ['to'], type: "virtualbox"
           end
         end
 
